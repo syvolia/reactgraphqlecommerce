@@ -1,3 +1,5 @@
+
+
 # Prisma datamodel that generates prisma.graphql
 
 enum Permission {
@@ -10,18 +12,21 @@ enum Permission {
 }
 
 type User {
-  id: ID! @unique
+
+  id: ID! @id
   name: String!
   email: String! @unique
   password: String!
   resetToken: String
   resetTokenExpiry: String
-  permissions: [Permission]
-  cart: [CartItem!]!
+  permissions: [Permission!]! @scalarList(strategy: RELATION)
+  cart: [CartItem!]! @scalarList(strategy: RELATION)
+
+
 }
 
 type Item {
-  id: ID! @unique
+  id: ID! @id
   title: String!
   description: String!
   image: String
@@ -31,7 +36,7 @@ type Item {
 }
 
 type CartItem {
-  id: ID! @unique
+  id: ID! @id
   quantity: Int! @default(value: 1)
   item: Item # relationship to Item
   user: User! # relationship to User
@@ -40,7 +45,7 @@ type CartItem {
 # OrderItem can't have a relationship to Item, as if the item
 # changes in the future, we don't want that information reflected in the OrderItem
 type OrderItem {
-  id: ID! @unique
+  id: ID! @id
   title: String!
   description: String!
   image: String!
@@ -51,11 +56,11 @@ type OrderItem {
 }
 
 type Order {
-  id: ID! @unique
+  id: ID! @id
   items: [OrderItem!]!
   total: Int!
   user: User!
   charge: String!
-  updatedAt: DateTime!
-  createdAt: DateTime!
+  createdAt: DateTime!  @updatedAt
+  updatedAt: DateTime! @createdAt
 }

@@ -32,7 +32,7 @@ class SingleItem extends Component {
             <SingleItemStyles>
               {/* Head gets inserted into HTML head by nextjs */}
               <Head>
-                <title>Sick Fits | {item.title}</title>
+                <title>Ebuy | {item.title}</title>
               </Head>
               <img src={item.largeImage} alt={item.title} />
               <div className="details">

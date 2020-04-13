@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Dot = styled.div`
-  background: ${props => props.theme.red};
+  background: ${props => props.theme.green};
   color: white;
   border-radius: 50%;
   padding: 0.25rem;

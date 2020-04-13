@@ -25,7 +25,7 @@ const Header = () => (
     <div className="bar">
       <Logo>
         <Link href="/">
-          <a>Sick Fits</a>
+          <a>Ebuy</a>
         </Link>
       </Logo>
       <Nav />
