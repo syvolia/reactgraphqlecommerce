@@ -49,15 +49,16 @@ class CreateItem extends Component {
     const files = event.target.files;
     const data = new FormData();
     data.append('file', files[0]);
-    data.append('upload_preset', 'sickfits');
+    data.append('upload_preset', 'syvolia');
     const res = await fetch(
-      'https://api.cloudinary.com/v1_1/dvgfyuuxf/image/upload/',
+      'https://api.cloudinary.com/v1_1/syvolia/image/upload/',
       {
         method: 'POST',
         body: data
       }
     );
     const file = await res.json();
+    console.log(file,'upload file')
     this.setState({
       image: file.secure_url,
       largeImage: file.eager[0].secure_url
